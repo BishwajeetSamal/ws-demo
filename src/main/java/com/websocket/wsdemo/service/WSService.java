@@ -19,4 +19,9 @@ public class WSService {
         ResponseMessage resp = new ResponseMessage(message);
         messagingTemplate.convertAndSend("/topic/messages", resp);
     }
+
+    public void notifyUserFrontend(final String id, final String message) {
+        ResponseMessage resp = new ResponseMessage(message);
+        messagingTemplate.convertAndSendToUser(id, "/topic/private-messages", resp);
+    }
 }
